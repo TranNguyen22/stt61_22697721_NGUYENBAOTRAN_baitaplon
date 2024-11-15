@@ -2,6 +2,7 @@
 function loadJS(filename) {
   const link = document.createElement("script");
   link.src = filename;
+  link.crossOrigin = crossOrigin && crossOrigin;
   document.body.appendChild(link);
 }
 function loadCSS(filename, integrity, crossOrigin) {
