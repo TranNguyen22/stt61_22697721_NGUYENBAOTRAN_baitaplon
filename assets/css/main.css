@@ -1,0 +1,52 @@
+html,body{
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* Remove gap between menu and dropdown */
+}
+.active{
+  color: #0D6FED !important;
+}
+.register-btn:hover{
+  background-color: #ffc107!important;
+  color: white !important;
+}
+.login-btn:hover{
+  background-color: transparent!important;
+  color: #0D6FED !important;
+}
+.discover-btn:hover{
+  background: #0D6FED !important;
+  color: white !important;
+}
+.text-justify{
+  text-align: justify;
+}
+.intro{
+  flex: 1;
+}
+.intro > h2{
+  font-size: clamp(1.875rem, 1.5rem + 1.875vw, 3.75rem);
+  font-weight: bolder;
+}
+.intro-img{
+  width: 100%;
+  margin-top: 30px;
+}
+
+@media only screen and (min-width: 768px){
+  .intro-img{
+    width: 250px;
+    margin-top: 0;
+    transform: translate(250px, 0px);
+  }
+}
+@media only screen and (min-width: 1024px){
+  .intro-img{
+    width: 550px;
+    margin-top: 0;
+    transform: translate(50px, 0px);
+  }
+}

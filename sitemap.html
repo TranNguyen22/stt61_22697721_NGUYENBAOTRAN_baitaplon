@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body class="tw-h-[100vh]">
+    <header></header>
+
+    <main class="container tw-flex tw-h-[100%] tw-mx-auto">
+      <div id="network"></div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+    ></script>
+    <script>
+      // Dữ liệu các node (trang) và edges (mối liên kết giữa các trang)
+      const nodes = [
+        { id: 1, label: "Trang chủ" },
+        { id: 2, label: "Giới thiệu" },
+        { id: 3, label: "Thương hiệu" },
+        { id: 4, label: "Nike" },
+        { id: 5, label: "Adidas" },
+        { id: 6, label: "Converse" },
+        { id: 7, label: "Tin tức" },
+        { id: 8, label: "Login" },
+        { id: 9, label: "Register" },
+        { id: 10, label: "Order Form" },
+      ];
+
+      const edges = [
+        { from: 1, to: 2 }, // Trang chủ -> Giới thiệu
+        { from: 1, to: 3 }, // Trang chủ -> Thương hiệu
+        { from: 1, to: 7 }, // Trang chủ -> Tin tức
+        { from: 1, to: 8 }, // Trang chủ -> Login
+        { from: 1, to: 9 }, // Trang chủ -> Register
+        { from: 1, to: 10 }, // Trang chủ -> Order Form
+        { from: 3, to: 4 }, // Thương hiệu -> Nike
+        { from: 3, to: 5 }, // Thương hiệu -> Adidas
+        { from: 3, to: 6 }, // Thương hiệu -> Converse
+      ];
+
+      // Tạo mạng lưới sơ đồ
+      const container = document.getElementById("network");
+      const data = {
+        nodes: new vis.DataSet(nodes),
+        edges: new vis.DataSet(edges),
+      };
+      const options = {
+        nodes: {
+          shape: "box",
+          color: "#97C2FC",
+          font: { size: 16 },
+        },
+        edges: {
+          arrows: "to",
+          color: "gray",
+          font: { align: "middle" },
+        },
+        layout: {
+          hierarchical: {
+            direction: "UD", // Hướng lên xuống
+            sortMethod: "hubsize", // Xếp theo kích thước node
+          },
+        },
+        physics: false,
+      };
+
+      const network = new vis.Network(container, data, options);
+    </script>
+    <script src="/main.js"></script>
+  </body>
+</html>

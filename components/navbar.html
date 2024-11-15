@@ -1,0 +1,117 @@
+<nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand fw-bold" style="flex: auto; font-size: 30px" href="/"
+      ><em>Shoes</em></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Trang chủ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/gioi-thieu/">Giới thiệu</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="/pages/thuong-hieu/"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Thương hiệu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/pages/thuong-hieu/nike.html"
+              >Nike</a
+            >
+            <a class="dropdown-item" href="/pages/thuong-hieu/adidas.html"
+              >Adidas</a
+            >
+            <a class="dropdown-item" href="/pages/thuong-hieu/converse.html"
+              >Converse</a
+            >
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/trung-bay/">Trưng bày</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/tin-tuc/">Tin tức</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sitemap.html">Sitemap</a>
+        </li>
+      </ul>
+      <a
+        id="login-btn"
+        href="/pages/login.html"
+        class="btn btn-primary login-btn"
+        style="margin-left: auto"
+        >Đăng nhập</a
+      >
+      <button
+        id="logout-btn"
+        class="btn btn-danger login-btn"
+        style="margin-left: auto"
+      >
+        Đăng xuất
+      </button>
+      <a
+        id="register-btn"
+        href="/pages/register.html"
+        class="btn border border-warning text-warning register-btn"
+        style="margin-left: 5px"
+        >Đăng ký</a
+      >
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.querySelector('nav');
+  const spacer = document.querySelector(".spacer");
+  $(window).on("scroll", function (e) {
+    if (window.scrollY > navbar.offsetHeight) {
+    navbar.classList.add('fixed-top');
+  } else {
+    navbar.classList.remove('fixed-top');
+  }
+  });
+</script>
+<script>
+  if (localStorage.getItem("isLogin")) {
+    $("#login-btn").hide();
+    $("#register-btn").hide();
+    $("#logout-btn").show();
+  } else {
+    $("#logout-btn").hide();
+  }
+  $("#logout-btn").click(() => {
+    localStorage.removeItem("isLogin");
+    location.reload();
+  });
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  const currentPath = window.location.pathname;
+
+  navLinks.forEach((link) => {
+    if (link.getAttribute("href") === currentPath) {
+      link.classList.add("active");
+    }
+  });
+</script>

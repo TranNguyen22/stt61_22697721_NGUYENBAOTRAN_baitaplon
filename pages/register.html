@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đặt hàng</title>
+  </head>
+  <body
+    style="
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url(https://i.pinimg.com/736x/c9/26/12/c926128cc9f73e5158b2c6404f94590e.jpg);
+    "
+    class="tw-h-[100vh]"
+  >
+    <main
+      class="container tw-flex tw-flex-col tw-h-[100vh] tw-items-center tw-justify-center"
+    >
+      <div
+        class="shadow-lg tw-mx-auto tw-border-0 rounded tw-max-w-[450px] px-4 py-3 mt-2 tw-bg-[rgba(255,255,255,0.9)]"
+      >
+        <h2 class="tw-uppercase tw-text-center text-primary">Đăng ký</h2>
+        <form id="login-form" class="row g-3">
+          <div class="col-md-12">
+            <label for="username" class="form-label text-black"
+              >Họ và tên</label
+            >
+            <input
+              name="username"
+              required
+              type="text"
+              class="form-control"
+              id="username"
+            />
+          </div>
+          <div class="col-md-12">
+            <label for="pwd" class="form-label text-black">Mật khẩu</label>
+            <input
+              required
+              type="text"
+              minlength="8"
+              class="form-control"
+              id="pwd"
+              name="pwd"
+            />
+          </div>
+          <div class="col-md-12">
+            <label for="repwd" class="form-label text-black"
+              >nhập lại mật khẩu</label
+            >
+            <input
+              name="repwd"
+              required
+              type="text"
+              minlength="8"
+              class="form-control"
+              id="repwd"
+            />
+          </div>
+          <div class="col-12 tw-mt-2">
+            <button type="submit" class="btn btn-primary">Đăng ký</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/assets/js/anime-master/lib/anime.min.js"></script>
+    <script src="/assets/js/swal.min.js"></script>
+    <script src="/main.js"></script>
+    <script>
+      if (localStorage.getItem("isLogin")) {
+        window.location.replace("/");
+      }
+    </script>
+    <script>
+      $("#login-form").on("submit", function (e) {
+        e.preventDefault();
+        const username = $("#username").val();
+        const pwd = $("#pwd").val();
+        const account = {
+          username: "admin",
+          pwd: "12345678",
+        };
+        if (account.username !== username || account.pwd !== pwd) {
+          Swal.fire({
+            title: "Thông báo",
+            text: "Đăng nhập không thành công, tài khoản hoặc mật khẩu không đúng",
+            icon: "error",
+            confirmButtonText: "Đóng",
+            timer: 500,
+            timerProgressBar: true,
+          }).then((res) => {
+            if (res.isConfirmed) {
+              window.location.reload();
+              return;
+            } else {
+              window.location.reload();
+            }
+          });
+        } else {
+          Swal.fire({
+            title: "Thông báo",
+            text: "Đặt hàng thành công vui lòng check email",
+            icon: "success",
+            confirmButtonText: "Đóng",
+            timer: 500,
+            timerProgressBar: true,
+          }).then((res) => {
+            if (res.isConfirmed) {
+              localStorage.setItem("isLogin", true);
+              window.location.replace("/");
+            } else {
+              localStorage.setItem("isLogin", true);
+              window.location.reload();
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
