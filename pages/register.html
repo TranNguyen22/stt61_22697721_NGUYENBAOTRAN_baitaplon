@@ -37,7 +37,7 @@
             <label for="pwd" class="form-label text-black">Mật khẩu</label>
             <input
               required
-              type="text"
+              type="password"
               minlength="8"
               class="form-control"
               id="pwd"
@@ -51,7 +51,7 @@
             <input
               name="repwd"
               required
-              type="text"
+              type="password"
               minlength="8"
               class="form-control"
               id="repwd"
@@ -81,52 +81,31 @@
     <script src="https://trannguyen22.github.io/stt61_22697721_nguyenbaotran_baitaplon/main.js"></script>
     <script>
       if (localStorage.getItem("isLogin")) {
-        window.location.replace("https://trannguyen22.github.io/stt61_22697721_nguyenbaotran_baitaplon/");
+        window.location.replace(
+          "https://trannguyen22.github.io/stt61_22697721_nguyenbaotran_baitaplon/"
+        );
       }
     </script>
     <script>
       $("#login-form").on("submit", function (e) {
         e.preventDefault();
-        const username = $("#username").val();
-        const pwd = $("#pwd").val();
-        const account = {
-          username: "admin",
-          pwd: "12345678",
-        };
-        if (account.username !== username || account.pwd !== pwd) {
-          Swal.fire({
-            title: "Thông báo",
-            text: "Đăng nhập không thành công, tài khoản hoặc mật khẩu không đúng",
-            icon: "error",
-            confirmButtonText: "Đóng",
-            timer: 500,
-            timerProgressBar: true,
-          }).then((res) => {
-            if (res.isConfirmed) {
-              window.location.reload();
-              return;
-            } else {
-              window.location.reload();
-            }
-          });
-        } else {
-          Swal.fire({
-            title: "Thông báo",
-            text: "Đặt hàng thành công vui lòng check email",
-            icon: "success",
-            confirmButtonText: "Đóng",
-            timer: 500,
-            timerProgressBar: true,
-          }).then((res) => {
-            if (res.isConfirmed) {
-              localStorage.setItem("isLogin", true);
-              window.location.replace("https://trannguyen22.github.io/stt61_22697721_nguyenbaotran_baitaplon/");
-            } else {
-              localStorage.setItem("isLogin", true);
-              window.location.reload();
-            }
-          });
-        }
+        Swal.fire({
+          title: "Thông báo",
+          text: "Đăng ký thành công",
+          icon: "success",
+          confirmButtonText: "Đóng",
+          timer: 500,
+          timerProgressBar: true,
+        }).then((res) => {
+          if (res.isConfirmed) {
+            window.location.replace(
+              "https://trannguyen22.github.io/stt61_22697721_nguyenbaotran_baitaplon/"
+            );
+            return;
+          } else {
+            window.location.replace("https://trannguyen22.github.io/stt61_22697721_nguyenbaotran_baitaplon/");
+          }
+        });
       });
     </script>
   </body>
